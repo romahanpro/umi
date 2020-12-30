@@ -14,7 +14,8 @@ function createWallet () {
         }
     })
 
-    wallet.loadFile('wallet.html')
+    wallet.loadFile('wallet/index.html')
+    // wallet.webContents.openDevTools()
 }
 
 function createBlockchain () {
@@ -28,7 +29,38 @@ function createBlockchain () {
         }
     })
 
-    blockchain.loadFile('blockchain.html')
+    blockchain.loadFile('blockchain/index.html')
+    // blockchain.webContents.openDevTools()
+}
+
+function createWalletSnowfall () {
+    const wallet = new BrowserWindow({
+        width: 1000,
+        height: 700,
+        webPreferences: {
+            contextIsolation: true,
+            nodeIntegration: false,
+            nodeIntegrationInWorker: false
+        }
+    })
+
+    wallet.loadFile('snowfall-wallet/index.html')
+    // wallet.webContents.openDevTools()
+}
+
+function createBlockchainSnowfall () {
+    const blockchain = new BrowserWindow({
+        width: 1000,
+        height: 700,
+        webPreferences: {
+            contextIsolation: true,
+            nodeIntegration: false,
+            nodeIntegrationInWorker: false
+        }
+    })
+
+    blockchain.loadFile('snowfall-blockchain/index.html')
+    // blockchain.webContents.openDevTools()
 }
 
 function createTray () {
@@ -37,6 +69,19 @@ function createTray () {
             label: 'Blockchain',
             click() {
                 createBlockchain()
+            }
+        },
+        { type: 'separator' },
+        {
+            label: 'Snowfall: Wallet',
+            click() {
+                createWalletSnowfall()
+            }
+        },
+        {
+            label: 'Snowfall: Blockchain',
+            click() {
+                createBlockchainSnowfall()
             }
         },
         { type: 'separator' },
@@ -62,6 +107,6 @@ app.on('window-all-closed', () => {
 
 app.on('activate', () => {
     if (BrowserWindow.getAllWindows().length === 0) {
-        createWindow()
+        createWallet()
     }
 })
