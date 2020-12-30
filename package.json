@@ -1,0 +1,29 @@
+{
+  "name": "umi-wallet",
+  "private": true,
+  "description": "UMI Desktop Wallet",
+  "license": "MIT",
+  "build": {
+    "appId": "top.umi.wallet",
+    "mac": {
+      "target": "dmg",
+      "asar": true,
+      "category": "public.app-category.finance",
+      "gatekeeperAssess": false
+    },
+    "afterSign": "./afterSignHook.js"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@rollup/plugin-node-resolve": "^11.0.1",
+    "electron": "^11.1.1",
+    "electron-builder": "^22.9.1",
+    "electron-notarize": "^1.0.0",
+    "rollup": "^2.35.1"
+  },
+  "scripts": {
+    "dev": "electron ./app",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder"
+  }
+}
